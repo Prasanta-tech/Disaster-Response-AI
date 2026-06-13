@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DisasterAI Command Center</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="dash-body">
+  <main class="dashboard-shell">
+    <header class="dash-header">
+      <div>
+        <p class="eyebrow">Live rescue operations</p>
+        <h1>Rescue Team Command Center</h1>
+      </div>
+      <div class="header-actions">
+        <span class="status-pill">Rescue team side</span>
+        <span id="clock" class="status-pill">--:--:--</span>
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <article class="kpi-card blue"><span>Active SOS</span><strong id="kpiActive">0</strong><small>live incidents</small></article>
+      <article class="kpi-card red"><span>Critical</span><strong id="kpiCritical">0</strong><small>DSS 80+</small></article>
+      <article class="kpi-card green"><span>Teams Allocated</span><strong id="kpiTeams">0</strong><small>medical + rescue</small></article>
+      <article class="kpi-card purple"><span>People Covered</span><strong id="kpiPeople">0</strong><small>estimated affected</small></article>
+    </section>
+
+    <section class="panel usage-panel">
+      <div class="panel-head"><h2>Overall Resource Usage</h2><span>All active SOS events</span></div>
+      <div id="overallUsage" class="usage-grid"></div>
+    </section>
+
+    <section class="command-grid">
+      <aside class="panel incident-panel">
+        <div class="panel-head">
+          <h2>Live SOS Transmissions</h2>
+          <span id="syncState">Syncing</span>
+        </div>
+        <div id="incidentFeed" class="incident-feed"></div>
+      </aside>
+
+      <section class="panel detail-panel">
+        <div class="panel-head">
+          <h2>AI Orchestrator Output</h2>
+          <button id="deployBtn" class="primary-btn" type="button">Mark Dispatched</button>
+        </div>
+        <div id="emptyState" class="empty-state">Waiting for SOS data from the citizen app.</div>
+        <div id="incidentDetail" class="hidden">
+          <div class="detail-title">
+            <div>
+              <p id="detailId" class="eyebrow"></p>
+              <h3 id="detailType"></h3>
+            </div>
+            <span id="detailSeverity" class="severity-pill"></span>
+          </div>
+          <p id="detailMessage" class="report-text"></p>
+          <div id="detailMedia" class="detail-media hidden"></div>
+          <p id="detailBriefing" class="briefing"></p>
+
+          <div class="mini-grid">
+            <section class="mini-panel">
+              <h4>Small AI Brief</h4>
+              <div id="summaryList" class="summary-list"></div>
+            </section>
+            <section class="mini-panel">
+              <h4>GPS Location</h4>
+              <div id="locationBox" class="location-box"></div>
+            </section>
+          </div>
+
+          <section class="mini-panel">
+            <h4>Officer & Provider Notification Plan</h4>
+            <div id="notificationList" class="notification-list"></div>
+          </section>
+
+          <div class="resource-grid" id="resourceGrid"></div>
+        </div>
+      </section>
+
+      <section class="panel map-panel">
+        <div class="panel-head"><h2>Incident Map</h2><span>Odisha response grid</span></div>
+        <div class="map-canvas" id="mapCanvas"></div>
+      </section>
+
+      <section class="panel feed-panel">
+        <div class="panel-head"><h2>Live Event Feed</h2><span>Agent actions</span></div>
+        <div id="eventFeed" class="event-feed"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="mediaModal" class="media-modal hidden" role="dialog" aria-modal="true" aria-label="Full size citizen evidence">
+    <button id="mediaModalClose" class="media-modal-close" type="button" aria-label="Close media viewer">Close</button>
+    <div id="mediaModalContent" class="media-modal-content"></div>
+  </div>
+
+  <script src="/static/dashboard.js"></script>
+</body>
+</html>

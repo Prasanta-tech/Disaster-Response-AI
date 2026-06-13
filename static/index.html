@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DisasterAI SOS App</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body class="sos-body">
+  <main class="sos-shell">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark">SOS</span>
+        <span>DisasterAI Citizen SOS</span>
+      </div>
+      <span class="status-pill">User side</span>
+    </header>
+
+    <section class="sos-panel">
+      <div class="sos-heading">
+        <p class="eyebrow">Emergency transmission terminal</p>
+        <h1>SOS Transmission</h1>
+        <p>Send a disaster report to the rescue control center. The AI agent will score severity and allocate resources.</p>
+      </div>
+
+      <form id="sosForm" class="sos-form">
+        <div class="form-grid">
+          <label>
+            <span>Latitude</span>
+            <input id="latInput" type="number" step="0.0001" value="21.4669" required>
+          </label>
+          <label>
+            <span>Longitude</span>
+            <input id="lonInput" type="number" step="0.0001" value="83.9812" required>
+          </label>
+        </div>
+
+        <button class="secondary-btn" type="button" id="gpsBtn">Locate me</button>
+        <p id="gpsStatus" class="muted">Tap Locate me to replace wrong coordinates with your current GPS location.</p>
+
+        <label>
+          <span>Situation report</span>
+          <textarea id="sosText" rows="6" required placeholder="Example: Flood water entered our village. 150 people stranded, children need food and medical help. Road is blocked."></textarea>
+        </label>
+
+        <label class="upload-box">
+          <span>Photo or short video evidence</span>
+          <input id="mediaInput" type="file" accept="image/*,video/*">
+          <small>Optional. Attach one small image/video from the disaster scene.</small>
+        </label>
+        <div id="mediaPreview" class="media-preview hidden"></div>
+
+        <button class="danger-btn" id="submitBtn" type="submit">Initiate Emergency Protocol</button>
+      </form>
+
+      <section id="tracker" class="tracker hidden">
+        <div class="success-box">
+          <p>Transmission received</p>
+          <strong id="incidentId"></strong>
+        </div>
+        <div class="briefing-box">
+          <p class="eyebrow">AI allocation result</p>
+          <h2 id="incidentSeverity">Processing</h2>
+          <p id="aiBriefing"></p>
+        </div>
+        <div id="timeline" class="timeline"></div>
+        <div class="action-row">
+          <button class="secondary-btn" type="button" onclick="location.reload()">Send another SOS</button>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/sos.js"></script>
+</body>
+</html>
